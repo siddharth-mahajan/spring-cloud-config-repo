@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: app-route
+        uri: lb://Discovery-Server # assuming you have a load-balanced service named app-service
+        predicates:
+        - Path=/dashboard # match requests with /api/app path
+#        filters:
+#        - RewritePath=/api/app/(?<segment>.*), /app/$\{segment} # rewrite the path to /app
+#        - TokenRelay= # enable token relay
+#        - AddRequestHeader=X-Custom-Header, Foo # add a custom header
+#        - name: CircuitBreaker # use circuit breaker
+#          args:
+#            name: appCircuitBreaker # give a name to the circuit breaker
+#            fallbackUri: forward:/fallback # specify the fallback URI
